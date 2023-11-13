@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加文章</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .gray{
+            color: gray;
+        }
+        input{
+            border: 1px solid green;
+        }
+        .error{
+            color: pink;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>添加文章</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            {% if field.field.required %}
+            <span class="red">*</span>
+            {% endif %}
+            <label class="gray">{{ field.field.label }}:</label>
+            {{ field }}
+            {% for error in field.errors %}
+            <p class="error">{{ error }}</p>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <div style="margin-top: 20px">
+            <button type="submit">添加文章</button>
+        </div>
+    </form>
+
+</body>
+</html>

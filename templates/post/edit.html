@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编辑文章</title>
+    <style>
+        .red{
+            color: red;
+        }
+        .gray{
+            color: gray;
+        }
+        input{
+            border: 1px solid green;
+        }
+        .error{
+            color: pink;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>编辑文章</h1>
+    <form action="" method="post">
+        {% include 'post/form.html' %}
+        <div style="margin-top: 20px">
+            <button type="submit">保存</button>
+        </div>
+    </form>
+
+</body>
+</html>

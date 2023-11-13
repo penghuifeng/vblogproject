@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red {
+            color: red;
+        }
+        .gray {
+            color: gray;
+        }
+        input {
+            border: 1px solid green;
+        }
+        .error {
+            color: pink;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>添加学生</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <span class="red">*</span>
+            <label class="gray">名字:</label>
+            <input type="text" name="name">
+            <p class="error">名字里不能有特殊字符</p>
+            <p class="error">名字长度不能超过2</p>
+        </div>
+        <div>
+            <span class="red">*</span>
+            <label class="gray">年龄:</label>
+            <input type="number" name="age">
+        </div>
+        <div>
+            <button type="submit">添加学生</button>
+        </div>
+    </form>
+</body>
+</html>

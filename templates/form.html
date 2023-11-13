@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<main class="col-md-8">
+    <h2>{{ little_title }}</h2><br>
+    {% for error in form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+    {% endfor %}
+    <form class="common-form" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            {% if field.field.required %}
+            <span class="red-text">*</span>
+            {% endif %}
+            <label>{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+            {{ field.help_text | safe }}
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-lg btn-block">提交</button>
+    </form>
+</main>
+{% endblock %}

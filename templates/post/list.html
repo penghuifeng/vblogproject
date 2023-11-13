@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章列表</title>
+    <style>
+        form {
+            width:500px; text-align:center; margin-bottom:20px
+        }
+        .page{
+            width:200px; text-align:center; margin-top: 20px
+        }
+        .red{
+            color: red;
+            font-family: "楷体";
+        }
+        .green {
+            color: green;
+            font-weight: bold;
+            font-family:"楷体";
+        }
+    </style>
+</head>
+<body>
+    <h1 class="red">文章列表</h1>
+    <div>
+        {% for msg in messages %}
+        <p>{{ msg }}</p>
+        {% endfor %}
+    </div>
+    <form>
+        <input type="search" name="keyword" value="{{ request.GET.keyword }}">
+        <button type="submit">搜索</button>
+        <a class="green" href="/post/add/">添加+</a>
+    </form>
+    <table border="1" cellspacing="0" width="500">
+        <tr>
+            <th>标题</th>
+            <th>作者</th>
+            <th>操作</th>
+        </tr>
+        {% for post in post_list %}
+        <tr>
+            <td>{{ post.title }}</td>
+            <td align="center">{{ post.author }}</td>
+            <td align="center">
+                <a href="/post/edit/{{ post.id }}">编辑</a>
+                <a onclick="return confirm('是否删除？')" href="/post/delete/{{ post.id }}">删除</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="page">
+        {% if post_list.has_previous %}
+        <a  accesskey="w" href="?page_num={{ post_list.previous_page_number }}&page_size={{post_list.paginator.per_page }}&keyword={{ request.GET.keyword }}">上一页(w)</a>
+        {% endif %}
+        <span>{{ post_list.number }}/{{ post_list.paginator.num_pages }}</span>
+        {% if post_list.has_next %}
+        <a accesskey="s" href="?page_num={{ post_list.next_page_number }}&page_size={{post_list.paginator.per_page }}&keyword={{ request.GET.keyword }}">下一页(s)</a>
+        {% endif %}
+    </div>
+</body>
+</html>

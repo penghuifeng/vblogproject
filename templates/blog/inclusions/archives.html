@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div class="widget widget-archives">
+    <h3 class="widget-title">归档</h3>
+    <ul>
+      {% for archive in archives %}
+      <li>
+          <a href="/archives/{{ archive.year }}/{{ archive.month }}/">{{ archive.year }} 年 {{ archive.month }} 月</a>
+<!--       <a href="#">{{ archive.year }} 年 {{ archive.month }} 月</a>-->
+      </li>
+    {% endfor %}
+    </ul>
+      </div>
+</body>
+</html>
